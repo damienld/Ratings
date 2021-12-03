@@ -52,7 +52,7 @@ namespace EloRanking
             
             return aRatingA;
         }
-        public static double UpdateEloRatingLikeTennisAbstractBySet(double aRatingA, double aRatingB,
+        public static double UpdateEloRatingBySet(double aRatingA, double aRatingB,
                                     int aNbMatchesA, int aNbMatchesB, bool aIsSlam
             , int aRoundId, int aNbSetsA, int aNbSetsB)
         {
@@ -61,17 +61,17 @@ namespace EloRanking
             double gainToRatingA = 0;
             for (int i = 1; i <= aNbSetsA; i++)
             {
-                gainToRatingA += UpdateEloRatingLikeTennisAbstract(aRatingA, aRatingB,
+                gainToRatingA += UpdateEloRatingMatch(aRatingA, aRatingB,
                                     aNbMatchesA, aNbMatchesB, true, aIsSlam, aRoundId) - aRatingA;
             }
             for (int i = 1; i <= aNbSetsB; i++)
             {
-                gainToRatingA += UpdateEloRatingLikeTennisAbstract(aRatingA, aRatingB,
+                gainToRatingA += UpdateEloRatingMatch(aRatingA, aRatingB,
                                     aNbMatchesA, aNbMatchesB, false, aIsSlam, aRoundId) - aRatingA;
             }
             return aRatingA + gainToRatingA;
         }
-        public static double UpdateEloRatingLikeTennisAbstract(double aRatingA, double aRatingB,
+        public static double UpdateEloRatingMatch(double aRatingA, double aRatingB,
                                     int aNbMatchesA, int aNbMatchesB, bool aIsPlayerAWon, bool aIsSlam
             , int aRoundId)
         {
